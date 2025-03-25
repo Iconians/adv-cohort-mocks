@@ -27,8 +27,8 @@ const twoSum = (arr: number[], target: number) => {
   return [];
 };
 
-console.log(twoSum([2, 7, 11, 15], 9)); // [1, 2]
-console.log(twoSum([1, 3, 4, 5, 7], 8)); // [2, 4]
+// console.log(twoSum([2, 7, 11, 15], 9)); // [1, 2]
+// console.log(twoSum([1, 3, 4, 5, 7], 8)); // [2, 4]
 
 // # Longest Substring Without Repeating Characters
 // # Given a string, find the length of the longest substring without repeating characters using the sliding window technique.
@@ -37,3 +37,22 @@ console.log(twoSum([1, 3, 4, 5, 7], 8)); // [2, 4]
 // # Output: 3  ("abc")
 // # Input: "bbbbb"
 // # Output: 1  ("b")
+
+const substr = (str: string) => {
+  const lastIndex = new Array(26).fill(-1);
+  let res = 0;
+  let window = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    window = Math.max(
+      window,
+      lastIndex[str.charCodeAt(i) - "a".charCodeAt(0)] + 1
+    );
+    res = Math.max(res, i - window + 1);
+    lastIndex[str.charCodeAt(i) - "a".charCodeAt(0)] = i;
+  }
+  return res;
+};
+
+console.log(substr("abcabcbb")); // 3 (abc)
+console.log(substr("bbbbb")); // 1 (b)
