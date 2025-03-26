@@ -101,7 +101,6 @@ function printList(head: RNode<number> | null): void {
   let curr = head;
   let val = [];
   while (curr !== null) {
-    // console.log(curr.data + " ");
     val.push(curr.data);
     curr = curr.next;
   }
